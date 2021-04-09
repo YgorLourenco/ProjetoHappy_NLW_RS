@@ -1,0 +1,118 @@
+#page-landing {
+  background: linear-gradient(329.54deg, #29b6d1 0%, #00c7c7 100%) no-repeat;
+  text-align: center;
+  min-height: 100vh;
+  /*inline podem ficar um do lado da outra na mesma linha*/
+  /*block pega toda a linha*/
+  /*São regras fora da caixa*/
+  /*Flex e grid são dentro da caixa*/
+  display: flex;
+  /*Alinha tudo no centro*/
+  /*align-items: center;*/
+}
+#container {
+  /*Automaticamente alinha no centro usando a margem*/
+  /*Se não colocar direção, ele centraliza automatico pro centro*/
+  margin: auto;
+  /*Topo, Embaixo, Esquerda e Direita*/
+  /*margin: 50px 10px 600px 100px;*/
+  /*width: 90%;*/
+  /*O minimo e 90% ou 112rem, se passar disso e aplicado a regra*/
+  width: min(90%, 112rem);
+}
+/*Pode especificar ainda mais colocar o elemento sem virgula na frente*/
+.location,
+h1,
+.visit p {
+  height: 16vh;
+}
+.visit a {
+  width: 8rem;
+  height: 8rem;
+  background: #ffd666;
+  border: none;
+  border-radius: 3rem;
+  /*Alinha as laterais*/
+  display: flex;
+  align-items: center;
+  /*Alinha a altura*/
+  justify-content: center;
+  margin: 0 auto;
+  transition: background 200ms;
+}
+/*hover e um estado onde faz algo com o mouse em cima*/
+.visit a:hover {
+  background: #96feff;
+}
+
+#logo {
+  animation-delay: 50ms;
+}
+
+.location {
+  animation-delay: 100ms;
+}
+
+main h1 {
+  animation-delay: 150ms;
+}
+
+.visit p {
+  animation-delay: 200ms;
+}
+
+.visit a {
+  animation-delay: 250ms;
+}
+
+/* Desktop Version*/
+@media (min-width: 768px) {
+  #container {
+    /*Localização da imagem / Ocupação da imagem/ Não repetir imagem/ Tamanho da imagem*/
+    background: url("../images/bg.svg") no-repeat 80% /
+      clamp(30rem, 54vw, 56rem);
+    padding: 5rem 2rem;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    /*Cria um espaço entre os elementos*/
+    justify-content: space-between;
+  }
+  .location,
+  h1,
+  .visit p {
+    /*valor "initial" volta para o valor inicial*/
+    height: initial;
+    text-align: initial;
+  }
+  .location {
+    text-align: right;
+    font-size: 2.4rem;
+    line-height: 1.5;
+  }
+  main h1 {
+    /*valor "clamp" cria 3 valores, onde se tem o minimo, valor ideal
+    e máximo que algo deve chegar*/
+    font-size: clamp(4rem, 8vw, 8.4rem);
+    font-weight: bold;
+    width: min(300px, 80%);
+    line-height: 0.88;
+    margin: clamp(10%, 9vh, 12%) 0 4rem;
+  }
+
+  .visit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .visit p {
+    font-size: 2.4rem;
+    line-height: 1.5;
+    width: clamp(20rem, 20vw, 30rem);
+  }
+  .visit a {
+    margin: initial;
+  }
+}

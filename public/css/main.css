@@ -1,0 +1,52 @@
+/*Sempre a ultima regra e mais importante*/
+/*# vai procurar no HTML só esse elemento escrito com "id='body'" */
+/*
+#body{
+    color: red;
+}
+body{
+    color:green;
+}
+*/
+/*background e o atributo que mexe com a estetica de fundo */
+/*background-color cor de fundo */
+/*background-size tamanho do fundo */
+/*Existe funções como "linear-gradient" onde cria um gradiente 
+onde se ajusta o grau, cor e opacidade*/
+/*função no-repeat não repete o fundo */
+/*O * e um seletor universal */
+* {
+  /*Margin e a margem entre o conteudo e canto da pagina*/
+  margin: 0;
+  /*padding e o preenchimento entre o conteudo e o limite que 
+    vc criou */
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  /*height e altura da visão do elemento */
+  height: 100vh;
+  color: white;
+  /*Ele vai ignorar o padding e fazer o conteudo ser medido pelo tamanho
+  da borda*/
+  background: #EBF2F5;
+}
+:root {
+  font-size: 62.5%;
+}
+/*Pode colocar vários seletores de uma vez só*/
+body,
+input,
+button,
+textarea {
+  /*Configuração de fontes*/
+  /*
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1;
+    */
+  /*Resumido*/
+  font: 400 1.8rem/1 "Nunito", sans-serif;
+  /*Colocar desta forma a fonte que peguei do Google*/
+  font-family: "Nunito", sans-serif;
+}

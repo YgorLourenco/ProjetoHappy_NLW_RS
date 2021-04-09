@@ -1,0 +1,95 @@
+<!-- Sinaliza a documentação HTML -->
+<!DOCTYPE html>
+<!-- o "lang" e um atributo que sinaliza algo-->
+<html lang="en">
+<head>
+    <!-- <meta> e um tag que só serve para colocar atributos-->
+    <!-- charset serve pra faze configuração do HTML-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- ALT+Z quebra o codigo longos para visualizar melhor-->
+    <!-- Valor "viewport" serve para deixar responsivo-->
+    <!--Precisa dessa linha para deixar responsivo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--title coloca nome na nossa página -->
+    <title>Localize um orfanato | Happy</title>
+    <!--muda o icone da página-->
+    <!-- rel e um atributo de tipo de item-->
+    <!--href e a localização do item-->
+    <link rel="icon" href="/images/logo-icon.png">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <link rel="stylesheet" href="/css/page-orphanages.css">
+
+    <!--Colocar o link da fonte aqui-->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!--Colocar uma regra CSS de maneira especifica no head do site da mais força a regra -->
+<!--style e uma tag pra colocar CSS em qualquer lugar do HTML-->
+  <!--  <style>
+        body{
+            color: yellow;
+        }
+    </style>
+-->
+    <!-- Mapa -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    ntegrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+</head>
+<!--Colocar uma regra CSS de maneira especifica no corpo do site-->
+<!--id="" e apenas para marcar um identificador para o CSS-->
+<body id="body">
+    
+    <div id="page-orphanages">
+        <aside class="animate-right">
+            <header>
+                <img src="/images/map-marker.svg" alt="Happy">
+                <h2>Escolha um orfanato no mapa</h2>
+
+                <p>Muitas crianças estão esperando a sua visita :)</p>
+            </header>
+            <footer>
+                <strong>Rio do Sul</strong>
+                <p>Santa Catarina</p>        
+            </footer>
+        </aside>
+        <div id="mapid" class="animate-appear"></div>
+
+        <div class="orphanages">
+            {{#each orphanages}}
+            <span hidden
+            data-id="{{this.id}}"
+            data-name="{{this.name}}"
+            data-lat="{{this.lat}}"
+            data-lng="{{this.lng}}"
+            ></span>
+            {{/each}}
+        </div>
+        
+
+            <a href="/create-orphanage" class="create-orphanage" title="Cadastre um orfanato">
+                <img src="/images/plus.svg" alt="Criar orfanato">
+
+            </a>
+    </div>
+
+    <script src="/scripts/page-orphanages.js"></script>
+
+</body>
+</html>
+
+
+<!---
+    HTML
+    Hypertext
+        Hipertexto - Texto clicavel
+    Markup
+        Marcação <tags>
+    Language
+        Linguagem
+-->

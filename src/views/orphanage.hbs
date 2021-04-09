@@ -1,0 +1,148 @@
+<!-- Sinaliza a documentação HTML -->
+<!DOCTYPE html>
+<!-- o "lang" e um atributo que sinaliza algo-->
+<html lang="pt-br">
+
+<head>
+  <!-- <meta> e um tag que só serve para colocar atributos-->
+  <!-- charset serve pra faze configuração do HTML-->
+  <meta charset="UTF-8" />
+  <!-- ALT+Z quebra o codigo longos para visualizar melhor-->
+  <!-- Valor "viewport" serve para deixar responsivo-->
+  <!--Precisa dessa linha para deixar responsivo-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--title coloca nome na nossa página -->
+  <title>{{orphanage.name}} | Happy</title>
+  <!-- Mapa -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    ntegrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+  <!--muda o icone da página-->
+  <!-- rel e um atributo de tipo de item-->
+  <!--href e a localização do item-->
+  <link rel="icon" href="/images/logo-icon.png" />
+
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
+  <link rel="stylesheet" href="/css/page-orphanage.css" />
+  <link rel="stylesheet" href="/css/sidebar.css" />
+  <link rel="stylesheet" href="/css/map.css" />
+  <link rel="stylesheet" href="/css/buttons.css" />
+
+  <!--Colocar o link da fonte aqui-->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <!--Colocar uma regra CSS de maneira especifica no head do site da mais força a regra -->
+  <!--style e uma tag pra colocar CSS em qualquer lugar do HTML-->
+  <!--  <style>
+        body{
+            color: yellow;
+        }
+    </style>
+-->
+
+</head>
+<!--Colocar uma regra CSS de maneira especifica no corpo do site-->
+<!--id="" e apenas para marcar um identificador para o CSS-->
+
+<body id="body">
+  <div id="page-orphanage">
+    <!------------PARTE LATERAL EM AZUL------------>
+    <aside class="animate-right sidebar">
+
+      <img src="/images/map-marker.svg" alt="Happy">
+
+      <footer>
+        <!--onclick="history.back()" feito para voltar uma página-->
+        <button onclick="history.back()">
+          <img src="/images/arrow-back.svg" alt='Voltar'>
+        </button>
+      </footer>
+
+    </aside>
+    <!------------PARTE DO MEIO------------>
+    <!------------GALERIA DE IMAGENS----------->
+    <main class="animate-appear with-sidebar">
+      <div class="orphanage-details">
+        <img src="{{orphanage.firstImage}}" alt="{{orphanage.name}}" />
+
+        <div class="images">
+          {{#each orphanage.images}}
+          <!--Quando clicar no "onclick, aciona o evento em JavaScript"-->
+          <button onclick="selectImage(event)" class="active" type="button">
+            <img src="{{this}}" alt="{{orphanage.name}}" />
+          </button>
+          {{/each}}
+
+        </div>
+
+        <!------------TEXTO DO MEIO----------->
+        <div class="orphanage-details-content">
+          <h1>{{orphanage.name}}</h1>
+
+          <p>{{orphanage.about}}</p>
+
+          <!------------MAPA----------->
+          <div class="map-container">
+            <div id="mapid"></div>
+            <span data-lat="{{orphanage.lat}}" data-lng="{{orphanage.lng}}"></span>
+            <footer>
+              <!--target e para abrir a página em outro lugar-->
+              <a target="_blank" href="https://maps.google.com/mobile?q={{orphanage.lat}},{{orphanage.lng}}&z=15">Ver
+                rotas no Google Maps</a>
+            </footer>
+          </div>
+
+          <hr>
+
+          <h2>Instruções para a visita</h2>
+
+          <p>{{orphanage.instructions}}</p>
+          <!------------INFORMAÇÕES----------->
+          <div class="open-details">
+            <div class="hour">
+              <img src=".public/images/clock.svg" alt="Horários" />
+              {{orphanage.opening_hours}}
+            </div>
+            <!--Quando for 1(existe) quando for 0(não existe)-->
+            {{#if orphanage.open_on_weekends}}
+            <div class="open-on-weekends open">
+              <img src=".public/images/info.svg" alt="Informações" />
+              Atendemos Fim de semana
+            </div>
+            {{else}}
+            <div class="open-on-weekends closed">
+              <img src=".public/images/info-red.svg" alt="Informações" />
+              Não atendemos Fim de semana
+            </div>
+            {{/if}}
+          </div>
+
+          <!------------BOTÃO PARA CHAMAR NO WHATSAPP----------->
+          <a href="https://api.whatsapp.com/send?l=pt_BR&phone={{orphanage.whatsapp}}&text=Oi, quero conversar sobre visitas no {{orphanage.name}}" target="_blank"
+            class="primary-button" type="button">
+            <img src="/images/whatsapp.svg" alt="Chamar no Whatsapp" />
+            Entrar em contato
+          </a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/scripts/page-orphanage.js"></script>
+</body>
+
+</html>
+
+<!---
+    HTML
+    Hypertext
+        Hipertexto - Texto clicavel
+    Markup
+        Marcação <tags>
+    Language
+        Linguagem
+-->

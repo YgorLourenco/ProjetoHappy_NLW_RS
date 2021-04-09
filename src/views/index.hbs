@@ -1,0 +1,80 @@
+<!-- Sinaliza a documentação HTML -->
+<!DOCTYPE html>
+<!-- o "lang" e um atributo que sinaliza algo-->
+<html lang="pt-br">
+<head>
+    <!-- <meta> e um tag que só serve para colocar atributos-->
+    <!-- charset serve pra faze configuração do HTML-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- ALT+Z quebra o codigo longos para visualizar melhor-->
+    <!-- Valor "viewport" serve para deixar responsivo-->
+    <!--Precisa dessa linha para deixar responsivo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--title coloca nome na nossa página -->
+    <title>Happy</title>
+    <!--muda o icone da página-->
+    <!-- rel e um atributo de tipo de item-->
+    <!--href e a localização do item-->
+    <link rel="icon" href="/images/logo-icon.png">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <link rel="stylesheet" href="/css/page-landing.css">
+
+    <!--Colocar o link da fonte aqui-->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<!--Colocar uma regra CSS de maneira especifica no head do site da mais força a regra -->
+<!--style e uma tag pra colocar CSS em qualquer lugar do HTML-->
+  <!--  <style>
+        body{
+            color: yellow;
+        }
+    </style>
+-->
+</head>
+<!--Colocar uma regra CSS de maneira especifica no corpo do site-->
+<!--id="" e apenas para marcar um identificador para o CSS-->
+<body id="body">
+    <div id="page-landing">
+        <div id="container">
+            <header>
+                <!--img e uma tag de imagem-->
+                <!--src e a localização da imagem-->
+                <!--alt e a descrição da imagem-->
+                <img class='animate-up' id="logo" src="/images/logo.svg" alt="Logo da Happy" >
+                <!--div e uma caixa onde se coloca coisas dentro -->
+                <div class="location animate-up">
+                    <!--Strong e negrito-->
+                    <strong>Rio do Sul</strong>
+                    <!--p e um paragrafo-->
+                    <p>Santa Catarina</p>
+                </div>
+            </header>
+            <main>
+                    <!--h1 e a formatação pra titulo-->
+                    <h1 class='animate-up'>Leve felicidade para o mundo</h1>
+                    <!--section e para separar seções no site-->
+                    <section class="visit">
+                        <p class='animate-up'>Visite orfanatos e mude o dia de muitas crianças</p>
+                        <!--<a> e para colocar links-->
+                        <a href="/orphanages" title="Visite orfanatos" class='animate-up'>
+                            <img src="/images/arrow.svg">
+                        </a>
+                    </section>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<!---
+    HTML
+    Hypertext
+        Hipertexto - Texto clicavel
+    Markup
+        Marcação <tags>
+    Language
+        Linguagem
+-->

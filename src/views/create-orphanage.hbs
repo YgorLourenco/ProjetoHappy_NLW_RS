@@ -1,0 +1,191 @@
+<!-- Sinaliza a documentação HTML -->
+<!DOCTYPE html>
+<!-- o "lang" e um atributo que sinaliza algo-->
+<html lang="en">
+  <head>
+    <!-- <meta> e um tag que só serve para colocar atributos-->
+    <!-- charset serve pra faze configuração do HTML-->
+    <meta charset="UTF-8" />
+    <!-- ALT+Z quebra o codigo longos para visualizar melhor-->
+    <!-- Valor "viewport" serve para deixar responsivo-->
+    <!--Precisa dessa linha para deixar responsivo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--title coloca nome na nossa página -->
+    <title>Adicionar um Orfanato | Happy</title>
+    <!-- Mapa -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      ntegrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+    <!--muda o icone da página-->
+    <!-- rel e um atributo de tipo de item-->
+    <!--href e a localização do item-->
+    <link rel="icon" href="/images/logo-icon.png" />
+
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/animations.css" />
+    <link rel="stylesheet" href="/css/sidebar.css" />
+    <link rel="stylesheet" href="/css/map.css" />
+    <link rel="stylesheet" href="/css/form.css" />
+    <link rel="stylesheet" href="/css/buttons.css" />
+    <link rel="stylesheet" href="/css/page-create-orphanage.css" />
+
+    <!--Colocar o link da fonte aqui-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!--Colocar uma regra CSS de maneira especifica no head do site da mais força a regra -->
+    <!--style e uma tag pra colocar CSS em qualquer lugar do HTML-->
+    <!--  <style>
+        body{
+            color: yellow;
+        }
+    </style>
+-->
+  </head>
+  <!--Colocar uma regra CSS de maneira especifica no corpo do site-->
+  <!--id="" e apenas para marcar um identificador para o CSS-->
+  <body id="body">
+    <div id="create-orphanage">
+      <!------------PARTE LATERAL EM AZUL------------>
+      <aside class="animate-right sidebar">
+        <img src="/images/map-marker.svg" alt="Happy" />
+
+        <footer>
+          <!--onclick="history.back()" feito para voltar uma página-->
+          <button onclick="history.back()">
+            <img src="/images/arrow-back.svg" alt="Voltar" />
+          </button>
+        </footer>
+      </aside>
+      <!------------PARTE DO MEIO------------>
+      <main class="animate-appear with-sidebar">
+        <!--Tag para criação de formulários-->
+        <!--action e a rota onde vai salvar os dados do formulário-->
+        <!--método post serve pra salvar dados do formulário-->
+        <form action="save-orphanage" method="post" onsubmit="validate(event)">
+          <!--tag fieldset e feito para separar o formulários em blocos-->
+          <fieldset>
+            <!--tag legend e feito para colocar titulos nesses blocos-->
+            <legend>Dados</legend>
+
+            <div class="map-container">
+              <div id="mapid"></div>
+              <input type="hidden" name="lat">
+              <input type="hidden" name="lng">
+              <footer>
+                <a href="#" id="select-point">
+                  Clique no mapa para adicionar a localização
+                </a>
+              </footer>
+            </div>
+            <!--class "input-block" serve para criar lugares para entradas-->
+            <div class="input-block">
+              <!--for e para identificação no backend-->
+              <label for="name">Nome</label>
+              <!--id e para identificação no backend-->
+              <!--name e um atributo -->
+              <input id="name" name="name" required/>
+            </div>
+
+            <div class="input-block">
+              <label for="about"
+                >Sobre <span>Máximo de 300 caracteres</span></label
+              >
+              <!--tag textarea cria um input maior-->
+              <textarea id="about" name="about" required></textarea>
+            </div>
+
+            <div class="input-block">
+              <label for="whatsapp">Whatsapp</label>
+              <input id="whatsapp" name="whatsapp" required/>
+            </div>
+
+            <div class="input-block images">
+              <label for="images">Foto</label>
+              <div class="images-upload" id="images">
+
+                <div class="new-upload">
+                  <input name="images" placeholder="Cole o link da foto aqui" required type="url"/>
+                <span onclick="deleteField(event)">
+                  <img src="/images/remove-file.svg" alt="Remover Foto">
+                </span>
+                </div>
+
+
+                
+              </div>
+              <button onclick="addPhotoField()" type="button">
+                <img src="/images/add-file.svg" alt="Nova Imagem" />
+              </button>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Visitação</legend>
+
+            <div class="input-block">
+              <label for="instructions">Instruções</label>
+              <!--tag textarea cria um input maior-->
+              <textarea id="instructions" name="instructions" required></textarea>
+            </div>
+
+            <div class="input-block">
+              <label for="opening_hours">Horário das visitas</label>
+              <!--tag textarea cria um input maior-->
+              <textarea id="opening_hours" name="opening_hours" required></textarea>
+            </div>
+
+            <div class="input-block">
+              <label for="open_on_weekends">Atende fim de semana?</label>
+              <input
+                type="hidden"
+                id="open_on_weekends"
+                name="open_on_weekends"
+                value="1"
+                required
+              />
+              <div class="button-select">
+                <!--toggleSelected cria alternacia ao clicar-->
+                <button data-value="1" 
+                onclick="toggleSelect(event)" 
+                type="button" 
+                class="active">Sim</button>
+                <button data-value="0" 
+                onclick="toggleSelect(event)" 
+                type="button"
+                >Não</button>
+              </div>
+
+              <button type="submit" class="primary-button">
+                Confirmar
+              </button>
+
+            </div>
+          </fieldset>
+        </form>
+      </main>
+    </div>
+
+    <script src="/scripts/page-create-orphanage.js"></script>
+  </body>
+</html>
+
+<!---
+    HTML
+    Hypertext
+        Hipertexto - Texto clicavel
+    Markup
+        Marcação <tags>
+    Language
+        Linguagem
+-->
